@@ -1,0 +1,69 @@
+# Sistemas operacionais
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependências e builds
+node_modules/
+dist/
+build/
+.next/
+.vercel/
+out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Variáveis de ambiente e credenciais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+client_secret*.json
+service-account*.json
+google-service-account*.json
+token.json
+
+# Google Sheets, respostas e exports de leads
+*leads*.csv
+*leads*.xlsx
+*leads*.xls
+*respostas*.csv
+*respostas*.xlsx
+*respostas*.xls
+*formularios*.csv
+*formularios*.xlsx
+*formularios*.xls
+*planilha*.csv
+*planilha*.xlsx
+*planilha*.xls
+responses/
+respostas/
+exports/
+private/
+secrets/
+
+# Apps Script local/clasp
+.clasprc.json
+.clasp.json
+appsscript.local.json
+
+# Temporários
+tmp/
+temp/
+*.tmp
+*.bak
