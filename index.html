@@ -213,63 +213,7 @@
       aspect-ratio: 16 / 9;
       border-radius: 2px;
       background: #000;
-      position: relative;
       overflow: hidden;
-    }
-
-    .vsl-controls {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(0,0,0,0.85);
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .vsl-toggle {
-      width: 20px;
-      height: 20px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: #C8A97E;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      flex: 0 0 20px;
-    }
-
-    .vsl-toggle svg {
-      width: 20px;
-      height: 20px;
-      display: block;
-    }
-
-    .vsl-progress {
-      height: 3px;
-      background: #2A2A2A;
-      border-radius: 2px;
-      flex-grow: 1;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .vsl-progress-fill {
-      width: 0%;
-      height: 100%;
-      background: #C8A97E;
-      border-radius: 2px;
-    }
-
-    .vsl-time {
-      font-family: "DM Sans", sans-serif;
-      font-size: 12px;
-      color: #999990;
-      white-space: nowrap;
     }
 
     .vsl-content {
@@ -782,33 +726,16 @@
         </p>
         <div class="vsl-shell reveal">
           <div class="vsl-placeholder">
-            <video
+            <iframe
               id="vsl-player"
+              src="https://www.youtube-nocookie.com/embed/GzRxSCRyRRc?rel=0&modestbranding=1&playsinline=1&controls=1&disablekb=1"
               width="100%"
-              preload="metadata"
-              poster=""
-              style="display:block; width:100%; border-radius:2px;"
-            >
-              <source src="ABERTURA.mp4" type="video/mp4">
-            </video>
-            <div class="vsl-controls">
-              <button class="vsl-toggle" type="button" aria-label="Reproduzir vídeo">
-                <span id="icon-play">
-                  <svg viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M5 3.5L16 10L5 16.5V3.5Z" fill="currentColor"></path>
-                  </svg>
-                </span>
-                <span id="icon-pause">
-                  <svg viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M5 4H8V16H5V4Z" fill="currentColor"></path>
-                    <path d="M12 4H15V16H12V4Z" fill="currentColor"></path>
-                  </svg>
-                </span>
-              </button>
-              <div class="vsl-progress" aria-hidden="true">
-                <div class="vsl-progress-fill"></div>
-              </div>
-            </div>
+              style="display:block; width:100%; aspect-ratio:16/9; border:none; border-radius:2px;"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+              title="VSL Caíque Prando"
+            ></iframe>
           </div>
         </div>
         <div class="cta-wrap reveal">
@@ -1019,59 +946,6 @@
           item.style.setProperty("--reveal-delay", String(index * 80) + "ms");
         });
       });
-
-      var vslPlayer = document.getElementById("vsl-player");
-      var vslToggle = document.querySelector(".vsl-toggle");
-      var iconPlay = document.getElementById("icon-play");
-      var iconPause = document.getElementById("icon-pause");
-      var vslProgressFill = document.querySelector(".vsl-progress-fill");
-      var video = vslPlayer;
-
-      function updateVslControls() {
-        var duration = vslPlayer.duration || 0;
-        var progress = duration ? (vslPlayer.currentTime / duration) * 100 : 0;
-
-        vslProgressFill.style.width = String(progress) + "%";
-      }
-
-      function updatePlayPauseIcon() {
-        if (video.paused) {
-          iconPlay.style.display = 'block';
-          iconPause.style.display = 'none';
-        } else {
-          iconPlay.style.display = 'none';
-          iconPause.style.display = 'block';
-        }
-      }
-
-      if (vslPlayer && vslToggle && iconPlay && iconPause) {
-        vslPlayer.dataset.maxTime = "0";
-
-        vslToggle.addEventListener("click", function () {
-          if (vslPlayer.paused) {
-            vslPlayer.play();
-          } else {
-            vslPlayer.pause();
-          }
-        });
-
-        video.addEventListener('play', updatePlayPauseIcon);
-        video.addEventListener('pause', updatePlayPauseIcon);
-        updatePlayPauseIcon();
-
-        vslPlayer.addEventListener("loadedmetadata", updateVslControls);
-
-        vslPlayer.addEventListener('seeking', function() {
-          if (this.currentTime > this.dataset.maxTime) {
-            this.currentTime = this.dataset.maxTime;
-          }
-        });
-
-        vslPlayer.addEventListener('timeupdate', function() {
-          this.dataset.maxTime = this.currentTime;
-          updateVslControls();
-        });
-      }
 
       captureForms.forEach(function (form) {
         form.addEventListener("submit", async function (e) {
