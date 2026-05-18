@@ -209,6 +209,45 @@
       margin: 40px auto 0;
     }
 
+    #vsl-attention {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: #C8A97E;
+    }
+
+    #vsl-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #C8A97E;
+      display: inline-block;
+      animation: pulse-dot 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.3; transform: scale(0.7); }
+    }
+
+    #vsl-arrow {
+      display: inline-block;
+      animation: bounce-arrow 1.2s ease-in-out infinite;
+      font-size: 16px;
+    }
+
+    @keyframes bounce-arrow {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(5px); }
+    }
+
     .vsl-placeholder {
       aspect-ratio: 16 / 9;
       border-radius: 2px;
@@ -679,6 +718,10 @@
       .capture-form {
         padding: 0 4px;
       }
+
+      #vsl-attention {
+        font-size: 12px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -725,6 +768,11 @@
           se anulando emocionalmente para ser aceito — e como começar a mudar esse padrão.
         </p>
         <div class="vsl-shell reveal">
+          <div id="vsl-attention">
+            <span id="vsl-dot"></span>
+            <span id="vsl-text">O vídeo já está rodando — assista agora</span>
+            <span id="vsl-arrow">↓</span>
+          </div>
           <div class="vsl-placeholder">
             <iframe
               id="vsl-player"
